@@ -1,34 +1,32 @@
-CLASS zmscl_factory DEFINITION
-  PUBLIC
-  FINAL
-  CREATE PRIVATE
-  GLOBAL FRIENDS zmsth_injector.
+class zmscl_factory definition
+  public
+  final
+  create private
+  global friends zmsth_injector.
 
-  PUBLIC SECTION.
-    CLASS-METHODS
+  public section.
+    class-methods
       get_code_under_test
-        RETURNING VALUE(r_instance) TYPE REF TO zmsif_code_under_test.
+        returning value(r_instance) type ref to zmsif_code_under_test.
 
-    CLASS-METHODS
+    class-methods
       get_depended_on_component
-        RETURNING VALUE(r_instance) TYPE REF TO zmsif_depended_on_component.
+        returning value(r_instance) type ref to zmsif_depended_on_component.
 
-  PRIVATE SECTION.
-    CLASS-DATA g_code_under_test       TYPE REF TO zmsif_code_under_test.
-    CLASS-DATA g_depended_on_component TYPE REF TO zmsif_depended_on_component.
-ENDCLASS.
-
-
-
-CLASS zmscl_factory IMPLEMENTATION.
-  METHOD get_code_under_test.
-    r_instance = COND #( WHEN g_code_under_test IS NOT BOUND THEN NEW zmscl_code_under_test( ) ELSE g_code_under_test ).
-  ENDMETHOD.
+  private section.
+    class-data g_code_under_test       type ref to zmsif_code_under_test.
+    class-data g_depended_on_component type ref to zmsif_depended_on_component.
+endclass.
 
 
-  METHOD get_depended_on_component.
-    r_instance = COND #( WHEN g_depended_on_component IS NOT BOUND
-                         THEN NEW zmscl_depended_on_component( )
-                         ELSE g_depended_on_component ).
-  ENDMETHOD.
-ENDCLASS.
+class zmscl_factory implementation.
+  method get_code_under_test.
+    r_instance = cond #( when g_code_under_test is not bound then new zmscl_code_under_test( ) else g_code_under_test ).
+  endmethod.
+
+  method get_depended_on_component.
+    r_instance = cond #( when g_depended_on_component is not bound
+                         then new zmscl_depended_on_component( )
+                         else g_depended_on_component ).
+  endmethod.
+endclass.

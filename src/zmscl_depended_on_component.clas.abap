@@ -1,23 +1,24 @@
-CLASS zmscl_depended_on_component DEFINITION
-  PUBLIC
-  CREATE PRIVATE
-  GLOBAL FRIENDS zmscl_factory.
+class zmscl_depended_on_component definition
+  public
+  create private
+  global friends zmscl_factory.
 
-  PUBLIC SECTION.
-    INTERFACES zmsif_depended_on_component.
+  public section.
+    interfaces zmsif_depended_on_component.
 
-  PROTECTED SECTION.
+  protected section.
 
-  PRIVATE SECTION.
+  private section.
 
-ENDCLASS.
+endclass.
 
-CLASS zmscl_depended_on_component IMPLEMENTATION.
-  METHOD zmsif_depended_on_component~add.
-    ASSERT 1 = 0.
-  ENDMETHOD.
 
-  METHOD zmsif_depended_on_component~subtract.
+class zmscl_depended_on_component implementation.
+  method zmsif_depended_on_component~add.
+    assert 1 = 0.
+  endmethod.
+
+  method zmsif_depended_on_component~subtract.
     r_difference = i_minuend - i_subtrahend.
-  ENDMETHOD.
-ENDCLASS.
+  endmethod.
+endclass.

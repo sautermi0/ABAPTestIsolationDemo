@@ -1,37 +1,34 @@
-CLASS zmsth_injector DEFINITION
-  PUBLIC
-  FINAL
-  FOR TESTING
-  CREATE PRIVATE.
+class zmsth_injector definition
+  public
+  final
+  for testing
+  create private.
 
-  PUBLIC SECTION.
-    CLASS-METHODS
+  public section.
+    class-methods
       inject_code_under_test
-        IMPORTING i_double TYPE REF TO zmsif_code_under_test.
+        importing i_double type ref to zmsif_code_under_test.
 
-    CLASS-METHODS
+    class-methods
       inject_depended_on_component
-        IMPORTING i_double TYPE REF TO zmsif_depended_on_component.
+        importing i_double type ref to zmsif_depended_on_component.
 
-    CLASS-METHODS
+    class-methods
       clear.
-ENDCLASS.
+endclass.
 
 
+class zmsth_injector implementation.
+  method clear.
+    clear zmscl_factory=>g_code_under_test.
+    clear zmscl_factory=>g_depended_on_component.
+  endmethod.
 
-CLASS zmsth_injector IMPLEMENTATION.
-  METHOD clear.
-    CLEAR zmscl_factory=>g_code_under_test.
-    CLEAR zmscl_factory=>g_depended_on_component.
-  ENDMETHOD.
-
-
-  METHOD inject_code_under_test.
+  method inject_code_under_test.
     zmscl_factory=>g_code_under_test = i_double.
-  ENDMETHOD.
+  endmethod.
 
-
-  METHOD inject_depended_on_component.
+  method inject_depended_on_component.
     zmscl_factory=>g_depended_on_component = i_double.
-  ENDMETHOD.
-ENDCLASS.
+  endmethod.
+endclass.

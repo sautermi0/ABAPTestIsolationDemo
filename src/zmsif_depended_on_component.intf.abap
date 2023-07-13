@@ -1,11 +1,11 @@
-INTERFACE zmsif_depended_on_component PUBLIC.
+interface zmsif_depended_on_component public.
 
-  METHODS add IMPORTING i_summand_1  TYPE i
-                        i_summand_2  TYPE i
-              RETURNING VALUE(r_sum) TYPE i.
+  methods add importing i_summand_1  type i
+                        i_summand_2  type i
+              returning value(r_sum) type i.
 
-  METHODS subtract IMPORTING i_minuend           TYPE i
-                             i_subtrahend        TYPE i
-                   RETURNING VALUE(r_difference) TYPE i.
+  methods subtract importing i_minuend           type i
+                             i_subtrahend        type i
+                   returning value(r_difference) type i.
 
-ENDINTERFACE.
+endinterface.

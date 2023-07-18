@@ -1,4 +1,4 @@
-interface zmsif_depended_on_component public.
+interface zati_if_depended_on_component public.
 
   methods add importing i_summand_1  type i
                         i_summand_2  type i

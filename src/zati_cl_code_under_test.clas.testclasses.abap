@@ -1,7 +1,7 @@
 class ltd_depended_on_component definition for testing.
 
   public section.
-    interfaces zmsif_depended_on_component partially implemented.
+    interfaces zati_if_depended_on_component partially implemented.
 
     data m_result type i.
 
@@ -9,7 +9,7 @@ endclass.
 
 
 class ltd_depended_on_component implementation.
-  method zmsif_depended_on_component~add.
+  method zati_if_depended_on_component~add.
     r_sum = m_result.
   endmethod.
 endclass.
@@ -19,7 +19,7 @@ class ltc_call_other_object definition for testing
   duration short risk level harmless.
 
   private section.
-    data m_cut type ref to zmsif_code_under_test.
+    data m_cut type ref to zati_if_code_under_test.
 
     methods setup                    raising cx_static_check.
     methods double_with_framework    for testing raising cx_static_check.
@@ -30,20 +30,20 @@ endclass.
 
 class ltc_call_other_object implementation.
   method setup.
-    m_cut = zmscl_factory=>get_code_under_test( ).
+    m_cut = zati_cl_factory=>get_code_under_test( ).
   endmethod.
 
   method double_with_framework.
     " ABAP Object Oriented Test Double Framework
     " Given
-    final(test_double) = cast zmsif_depended_on_component( cl_abap_testdouble=>create( 'zmsif_depended_on_component' ) ).
+    final(test_double) = cast zati_if_depended_on_component( cl_abap_testdouble=>create( 'ZATI_if_depended_on_component' ) ).
 
     cl_abap_testdouble=>configure_call( test_double )->returning( 1 ).
 
     test_double->add( i_summand_1 = 1
                       i_summand_2 = 2 ).
 
-    zmsth_injector=>inject_depended_on_component( test_double ).
+    zati_th_injector=>inject_depended_on_component( test_double ).
 
     " When
     final(result) = m_cut->call_other_object( ).
@@ -58,7 +58,7 @@ class ltc_call_other_object implementation.
     " Given
     final(test_double) = new ltd_depended_on_component( ).
     test_double->m_result = 2.
-    zmsth_injector=>inject_depended_on_component( test_double ).
+    zati_th_injector=>inject_depended_on_component( test_double ).
 
     " When
     final(result) = m_cut->call_other_object( ).
@@ -78,7 +78,7 @@ class ltc_call_function_module definition for testing
 
     class-methods class_setup.
 
-    data m_cut type ref to zmsif_code_under_test.
+    data m_cut type ref to zati_if_code_under_test.
 
     methods setup                raising cx_static_check.
     methods fm_answer_1_expect_1 for testing raising cx_static_check.
@@ -96,7 +96,7 @@ class ltc_call_function_module implementation.
 
   method setup.
     g_function_test_environment->clear_doubles( ).
-    m_cut = zmscl_factory=>get_code_under_test( ).
+    m_cut = zati_cl_factory=>get_code_under_test( ).
   endmethod.
 
   method fm_answer_1_expect_1.
@@ -163,7 +163,7 @@ class ltc_select_database_table definition for testing
     class-methods class_setup.
     class-methods class_teardown.
 
-    data m_cut type ref to zmsif_code_under_test.
+    data m_cut type ref to zati_if_code_under_test.
 
     methods setup       raising cx_static_check.
     methods aggregation for testing raising cx_static_check.
@@ -184,7 +184,7 @@ class ltc_select_database_table implementation.
 
   method setup.
     g_sql_environment->clear_doubles( ).
-    m_cut = zmscl_factory=>get_code_under_test( ).
+    m_cut = zati_cl_factory=>get_code_under_test( ).
   endmethod.
 
   method aggregation.
@@ -201,12 +201,12 @@ class ltc_select_database_table implementation.
     " Then
     cl_abap_unit_assert=>assert_equals( act = lines( result )
                                         exp = 3 ).
-    cl_abap_unit_assert=>assert_true( xsdbool( line_exists( result[ SalesOrder = '1'
-                                                                    ItemCount  = 3 ] ) ) ).
-    cl_abap_unit_assert=>assert_true( xsdbool( line_exists( result[ SalesOrder = '2'
-                                                                    ItemCount  = 1 ] ) ) ).
-    cl_abap_unit_assert=>assert_true( xsdbool( line_exists( result[ SalesOrder = '3'
-                                                                    ItemCount  = 1 ] ) ) ).
+    cl_abap_unit_assert=>assert_true( xsdbool( line_exists( result[ salesorder = '1'
+                                                                    itemcount  = 3 ] ) ) ).
+    cl_abap_unit_assert=>assert_true( xsdbool( line_exists( result[ salesorder = '2'
+                                                                    itemcount  = 1 ] ) ) ).
+    cl_abap_unit_assert=>assert_true( xsdbool( line_exists( result[ salesorder = '3'
+                                                                    itemcount  = 1 ] ) ) ).
   endmethod.
 
   method empty_table.
@@ -230,7 +230,7 @@ class ltc_select_cds_entity definition for testing
     class-methods class_setup.
     class-methods class_teardown.
 
-    data m_cut type ref to zmsif_code_under_test.
+    data m_cut type ref to zati_if_code_under_test.
 
     methods setup       raising cx_static_check.
     methods aggregation for testing raising cx_static_check.
@@ -242,7 +242,7 @@ endclass.
 class ltc_select_cds_entity implementation.
   method class_setup.
     " ABAP CDS Test Double Framework
-    g_cds_environment = cl_cds_test_environment=>create( 'ZMS_CDS_ENTITY' ).
+    g_cds_environment = cl_cds_test_environment=>create( 'ZATI_CDS_ENTITY' ).
   endmethod.
 
   method class_teardown.
@@ -251,7 +251,7 @@ class ltc_select_cds_entity implementation.
 
   method setup.
     g_cds_environment->clear_doubles( ).
-    m_cut = zmscl_factory=>get_code_under_test( ).
+    m_cut = zati_cl_factory=>get_code_under_test( ).
   endmethod.
 
   method aggregation.
@@ -268,12 +268,12 @@ class ltc_select_cds_entity implementation.
     " Then
     cl_abap_unit_assert=>assert_equals( act = lines( result )
                                         exp = 3 ).
-    cl_abap_unit_assert=>assert_true( xsdbool( line_exists( result[ SalesOrder = '1'
-                                                                    ItemCount  = 3 ] ) ) ).
-    cl_abap_unit_assert=>assert_true( xsdbool( line_exists( result[ SalesOrder = '2'
-                                                                    ItemCount  = 1 ] ) ) ).
-    cl_abap_unit_assert=>assert_true( xsdbool( line_exists( result[ SalesOrder = '3'
-                                                                    ItemCount  = 1 ] ) ) ).
+    cl_abap_unit_assert=>assert_true( xsdbool( line_exists( result[ salesorder = '1'
+                                                                    itemcount  = 3 ] ) ) ).
+    cl_abap_unit_assert=>assert_true( xsdbool( line_exists( result[ salesorder = '2'
+                                                                    itemcount  = 1 ] ) ) ).
+    cl_abap_unit_assert=>assert_true( xsdbool( line_exists( result[ salesorder = '3'
+                                                                    itemcount  = 1 ] ) ) ).
   endmethod.
 
   method empty_table.
@@ -290,7 +290,7 @@ class ltc_call_authority_check definition for testing
   duration short risk level harmless.
 
   private section.
-    data m_cut type ref to zmsif_code_under_test.
+    data m_cut type ref to zati_if_code_under_test.
 
     methods setup                 raising cx_static_check.
     methods display_authorization for testing raising cx_static_check.
@@ -301,7 +301,7 @@ endclass.
 
 class ltc_call_authority_check implementation.
   method setup.
-    m_cut = zmscl_factory=>get_code_under_test( ).
+    m_cut = zati_cl_factory=>get_code_under_test( ).
   endmethod.
 
   method display_authorization.
@@ -387,7 +387,7 @@ class ltcl_call_rap_bo_tx_bf_dbl definition final for testing
     class-methods class_setup.
     class-methods class_teardown.
 
-    data m_cut type ref to zmsif_code_under_test.
+    data m_cut type ref to zati_if_code_under_test.
 
     methods setup.
     methods isolate_create_ba_to_pass for testing raising cx_static_check.
@@ -411,7 +411,7 @@ class ltcl_call_rap_bo_tx_bf_dbl implementation.
     final(double) = g_rap_buffer_environment->get_test_double( '/DMO/I_TRAVEL_M' ).
     double->configure_additional_behavior( )->set_fields_handler( new ltd_fields_handler( ) ).
 
-    m_cut = zmscl_factory=>get_code_under_test( ).
+    m_cut = zati_cl_factory=>get_code_under_test( ).
   endmethod.
 
   method isolate_create_ba_to_pass.
@@ -442,7 +442,7 @@ class ltcl_call_rap_bo_mock_eml_api definition final for testing
     class-methods class_setup.
     class-methods class_teardown.
 
-    data m_cut type ref to zmsif_code_under_test.
+    data m_cut type ref to zati_if_code_under_test.
 
     methods setup.
     methods isolate_create_ba_to_pass for testing raising cx_static_check.
@@ -463,11 +463,11 @@ class ltcl_call_rap_bo_mock_eml_api implementation.
 
   method setup.
     g_mock_eml_api_environment->clear_doubles( ).
-    m_cut = zmscl_factory=>get_code_under_test( ).
+    m_cut = zati_cl_factory=>get_code_under_test( ).
   endmethod.
 
   method isolate_create_ba_to_pass.
-    data mapped_double type response for mapped /DMO/I_Travel_M.
+    data mapped_double type response for mapped /dmo/i_travel_m.
 
     " Given
     mapped_double-travel = value #( ( %cid = 'Travel_1' travel_id = '1' ) ).

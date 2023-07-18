@@ -4,6 +4,7 @@
   <asx:values>
    <DEVC>
     <CTEXT>Test Isolation Demo</CTEXT>
+    <PACKTYPE>H</PACKTYPE>
    </DEVC>
   </asx:values>
  </asx:abap>

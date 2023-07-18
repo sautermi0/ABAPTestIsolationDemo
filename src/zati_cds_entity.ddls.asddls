@@ -7,7 +7,7 @@
   sizeCategory: #S,
   dataClass: #MIXED
 }
-define view entity ZMS_CDS_ENTITY
+define view entity ZATI_CDS_ENTITY
   as select from demo_sales_so_i
 {
   key parent_key                  as SalesOrder,

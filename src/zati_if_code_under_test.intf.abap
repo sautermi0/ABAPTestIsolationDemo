@@ -1,6 +1,6 @@
-interface zmsif_code_under_test public.
+interface zati_if_code_under_test public.
 
-  types t_items_per_sales_order type hashed table of zms_cds_entity with unique key salesorder.
+  types t_items_per_sales_order type hashed table of zati_cds_entity with unique key salesorder.
   types t_failed                type response for failed /dmo/i_travel_m.
   types t_reported              type response for reported /dmo/i_travel_m.
   types t_mapped                type response for mapped /dmo/i_travel_m.

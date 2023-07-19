@@ -1,5 +1,5 @@
 # ABAP Test Isolation Frameworks
-This repository contains a collection of all currently available test isolation tools available in the ABAP Platform. 
+This repository contains a collection of all currently available test isolation tools in the ABAP Platform. 
 
 ## The Idea
 The idea of this repository is to show how to use any test environment, helper class and some common design patterns that help with isolating your code under test from its depended-on components.

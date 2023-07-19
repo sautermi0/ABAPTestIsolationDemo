@@ -1,12 +1,12 @@
 # ABAP Test Isolation Frameworks
-This repository contains a collection of all currently available test isolation tools in the ABAP Platform. 
+This repository contains examples for all currently available test isolation tools in the ABAP Platform. 
 
 ## The Idea
 The idea of this repository is to show how to use any test environment, helper class and some common design patterns that help with isolating your code under test from its depended-on components.
 
-## The Method
-If you want to isolate your code under test from the components it uses, you need to take a look at what your depended-on component is. Each of the kind of isolation technique for a specific kind of depended-on component is used separate test class of the global class ZATI_CL_CODE_UNDER_TEST. 
-The table below shows which test class uses which method to isolate against which kind of depended-on component.
+## How To Use This Repository
+If you want to isolate your code under test from the components it uses, you need to take a look at what your depended-on component is. Each isolation technique for a specific kind of depended-on component is used separate test class of the global class ZATI_CL_CODE_UNDER_TEST. 
+The table below shows which test class uses which tool to isolate against which kind of depended-on component.
 
 Test Class | Depended-On Component | Tool | 
 ----- | ----- | ------

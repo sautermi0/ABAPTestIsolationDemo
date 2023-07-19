@@ -22,13 +22,46 @@ class ltc_call_other_object definition for testing
     data m_cut type ref to zati_if_code_under_test.
 
     methods setup                    raising cx_static_check.
-    methods double_with_framework    for testing raising cx_static_check.
     methods double_without_framework for testing raising cx_static_check.
 
 endclass.
 
 
 class ltc_call_other_object implementation.
+  method setup.
+    m_cut = zati_cl_factory=>get_code_under_test( ).
+  endmethod.
+
+  method double_without_framework.
+    " Self-made Test Double
+    " Given
+    final(test_double) = new ltd_depended_on_component( ).
+    test_double->m_result = 2.
+    zati_th_injector=>inject_depended_on_component( test_double ).
+
+    " When
+    final(result) = m_cut->call_other_object( ).
+
+    " Then
+    cl_abap_unit_assert=>assert_equals( act = result
+                                        exp = 2 ).
+  endmethod.
+endclass.
+
+
+class ltc_call_other_object_fw definition for testing
+  duration short risk level harmless.
+
+  private section.
+    data m_cut type ref to zati_if_code_under_test.
+
+    methods setup                 raising cx_static_check.
+    methods double_with_framework for testing raising cx_static_check.
+
+endclass.
+
+
+class ltc_call_other_object_fw implementation.
   method setup.
     m_cut = zati_cl_factory=>get_code_under_test( ).
   endmethod.
@@ -51,21 +84,6 @@ class ltc_call_other_object implementation.
     " Then
     cl_abap_unit_assert=>assert_equals( act = result
                                         exp = 1 ).
-  endmethod.
-
-  method double_without_framework.
-    " Selbstgebauter Test Double
-    " Given
-    final(test_double) = new ltd_depended_on_component( ).
-    test_double->m_result = 2.
-    zati_th_injector=>inject_depended_on_component( test_double ).
-
-    " When
-    final(result) = m_cut->call_other_object( ).
-
-    " Then
-    cl_abap_unit_assert=>assert_equals( act = result
-                                        exp = 2 ).
   endmethod.
 endclass.
 

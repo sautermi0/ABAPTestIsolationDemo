@@ -20,4 +20,4 @@ ltcl_call_rap_bo_tx_bf_dbl | RAP Business Objects | [Transactional Buffer Double
 ltcl_call_rap_bo_mock_eml_api | RAP Business Objects | [Mock EML API Support](https://help.sap.com/docs/SAP_S4HANA_CLOUD/25cf71e63940453397a32dc2b7676947/4fa0e8a6ea0d4c45bec1afdc1ac6bd49.html?locale=en-US)
 
 ## Disclaimer
-All of the contents of this repository and the knowledge used to implement the examples are publicly available. 
+All of the contents of this repository and the knowledge used to implement the examples are publicly available. My contributions to this repository are private and not on behalf of SAP.
